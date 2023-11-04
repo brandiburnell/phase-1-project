@@ -2,15 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // compile list of all breweries in CO
-    getCOBreweryDataBreweryData()
+    // getCOBreweryDataBreweryData()
 });
-
-
-// function fetchData() {
-//     fetch("https://api.openbrewerydb.org/v1/breweries")
-//         .then(res => res.json())
-//         .then(data => console.log(data));
-// }
 
 function getCOBreweryData() {
     
