@@ -54,9 +54,24 @@ function filterBreweries(e, breweries) {
     let city = e.target[0].value;
     let zipcode = e.target[1].value;
     let type = e.target[2].value;
-    
+
     // console.log(breweries);
     // console.log(zipcode);
-    console.log(breweries.filter(brew => brew.postal_code.substring(0,5) === zipcode));
+    
+    // filter depending on what was entered
+    const filteredBreweries = breweries.filter(brew => brew.postal_code.substring(0,5) === zipcode);
+    console.log(filteredBreweries);
 
+    // add breweries to the DOM that meet search criteria
+    displayFilteredBreweries(filteredBreweries);
+
+}
+
+function displayFilteredBreweries(filteredBreweries) {
+    // loop through breweries and add them to the DOM
+    filteredBreweries.forEach(brew => {
+        let li = document.createElement("li");
+        li.textContent = brew.name;
+        document.querySelector("#filtered-brewery-names").appendChild(li);
+    })
 }
