@@ -6,30 +6,35 @@
     <title>Colorado Brewery Finder</title>
 </head>
 <body>
-    <h1>Colorado Brewery Finder</h1>
-    <h3>Use the search boxes below to find a brewery that meets your needs!</h3>
+    <div id="header">
+        <h1>Colorado Brewery Finder</h1>
+        <h3>Use the search boxes below to find a brewery that meets your needs!</h3>    
+    </div>
 
-    <form class="brewery-search-form">
-        <h2>Search for a brewery:</h2>
-        <input type="text" name="city" value placeholder="Enter the name of a city" class="input-text">
-        <br>
-        <input type="text" name="zip-code" value placeholder="Enter a zipcode" class="input-text">
-        <br>
-        <select name="type" id="type">
-            <option value="select">Select a brewery type</option>
-            <option value="micro">Micro</option>
-            <option value="nano">Nano</option>
-            <option value="regional">Regional</option>
-            <option value="brewpub">Brewpub</option>
-            <option value="large">Large</option>
-            <option value="planning">Planning</option>
-            <option value="bar">Bar</option>
-            <option value="contract">Contract</option>
-            <option value="closed">Closed</option>
-        </select>
-        <br>
-        <input type="submit" name="submit" value="Search" class="submit"
-    </form>
+    <div id="form-container">
+        <form id="brewery-search-form">
+            <h2>Search for a brewery:</h2>
+            <input type="text" id="city" value placeholder="Enter the name of a city" class="input-text">
+            <br>
+            <input type="text" id="zip-code" value placeholder="Enter a zipcode" class="input-text">
+            <br>
+            <select name="type" id="type">
+                <option value="select">Select a brewery type</option>
+                <option value="micro">Micro</option>
+                <option value="nano">Nano</option>
+                <option value="regional">Regional</option>
+                <option value="brewpub">Brewpub</option>
+                <option value="large">Large</option>
+                <option value="planning">Planning</option>
+                <option value="bar">Bar</option>
+                <option value="contract">Contract</option>
+                <option value="closed">Closed</option>
+            </select>
+            <br>
+            <input type="submit" id="brewery-form-submit" value="Search" class="submit">
+        </form>
+    </div>
+
     <script src="index.js"></script>
 </body>
 </html>
