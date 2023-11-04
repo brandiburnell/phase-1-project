@@ -55,16 +55,41 @@ function filterBreweries(e, breweries) {
     let zipcode = e.target[1].value;
     let type = e.target[2].value;
 
+    console.log(type);
+
+    console.log(e);
     // console.log(breweries);
     // console.log(zipcode);
     
     // filter depending on what was entered
-    const filteredBreweries = breweries.filter(brew => brew.postal_code.substring(0,5) === zipcode);
-    console.log(filteredBreweries);
+    if (city) {
+        breweries = handleUserFilter("city", city, breweries);
+        console.log(breweries);
+    }
+    if (zipcode) {
+        breweries = handleUserFilter("postal_code", zipcode, breweries);
+        console.log(breweries);
+    }
+    if (type !== "select") {
+        breweries = handleUserFilter("brewery_type", type, breweries);
+        console.log(breweries);
+    }
+    // const filteredBreweries = breweries.filter(brew => brew.postal_code.substring(0,5) === zipcode);
+    // console.log(breweries);
 
     // add breweries to the DOM that meet search criteria
-    displayFilteredBreweries(filteredBreweries);
+    displayFilteredBreweries(breweries);
 
+}
+
+function handleUserFilter(searchTerm, userInput, breweries) {
+    // maybe change this to switch statements?
+    if (searchTerm === "postal_code") {
+        return breweries.filter(brew => brew[searchTerm].substring(0,5) === userInput);
+    }
+    else {
+        return breweries.filter(brew => brew[searchTerm] === userInput);
+    }
 }
 
 function displayFilteredBreweries(filteredBreweries) {
