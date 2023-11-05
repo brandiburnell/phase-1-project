@@ -1,9 +1,6 @@
 // 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // compile list of all breweries in CO
-    // getCOBreweryDataBreweryData()
-
     // Take user input and display breweries that meet search criteria
     document.querySelector("#brewery-search-form").addEventListener("submit", e => {
         e.preventDefault();
@@ -11,25 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         getBreweries(e);
     });
 });
-
-// function getCOBreweryData() {
-//     let pageNum = 1;
-//     const coBreweryInfo = [];
-//     // loop through brewery data until list length is less than 50
-//     // loop through CO brewery data to develop list of all colorado breweries
-//     while(pageNum < 10) {
-//         fetch(`https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=${pageNum}&per_page=$50`)
-//         .then(res => res.json())
-//         .then(data => {
-//             // console.log(data.length);
-//             coBreweryInfo.push(...data);
-//         });
-//         pageNum++;
-//     }
-//     // console.log(coBreweryInfo);
-
-//     return coBreweryInfo;
-// }
 
 function getBreweries(e) {
     let pageNum = 1;
@@ -54,25 +32,16 @@ function filterBreweries(e, breweries) {
     let city = e.target[0].value;
     let zipcode = e.target[1].value;
     let type = e.target[2].value;
-
-    console.log(type);
-
-    console.log(e);
-    // console.log(breweries);
-    // console.log(zipcode);
     
     // filter depending on what was entered
     if (city) {
         breweries = handleUserFilter("city", city, breweries);
-        console.log(breweries);
     }
     if (zipcode) {
         breweries = handleUserFilter("postal_code", zipcode, breweries);
-        console.log(breweries);
     }
     if (type !== "select") {
         breweries = handleUserFilter("brewery_type", type, breweries);
-        console.log(breweries);
     }
 
     // add breweries to the DOM that meet search criteria
@@ -91,13 +60,17 @@ function handleUserFilter(searchTerm, userInput, breweries) {
 }
 
 function displayFilteredBreweries(filteredBreweries) {
-    // loop through breweries and add them to the DOM
-    filteredBreweries.forEach(brew => {
-        // let li = document.createElement("li");
-        // li.textContent = brew.name;
-        // document.querySelector("#filtered-brewery-names").appendChild(li);
-        createBreweryCard(brew);
-    })
+    // if no breweried matched selections, display that to user
+    if (filteredBreweries.length === 0) {
+        let noBrews = document.createElement("h4");
+        noBrews.textContent = "No breweries were found that matched your criteria :(";
+        document.querySelector("#brewery-container").appendChild(noBrews);
+    }
+    else { // loop through breweries and add them to the DOM
+        filteredBreweries.forEach(brew => {
+            createBreweryCard(brew);
+        })
+    }   
 }
 
 function createBreweryCard(brewery) {
@@ -106,8 +79,19 @@ function createBreweryCard(brewery) {
 
     // add brewery name
     let brewName = document.createElement("h2");
+    brewName.className = "brewery-title";
+    brewName.id = brewery.name;
     brewName.textContent = brewery.name;
     brewDiv.appendChild(brewName);
+
+    // add brewery name pointer over event
+    brewDiv.querySelector(".brewery-title").addEventListener("pointerover", e => {
+        console.log(e);
+        e.target.style.color = "pink";
+        // console.log(e.parentElement.querySelector("a"));
+        //let link = 
+        //e.target.appendChild
+    });
 
     // add address
         let address1 = document.createElement("p");
@@ -164,10 +148,18 @@ function createBreweryCard(brewery) {
     // add visited button
     let btn = document.createElement("button");
     btn.className = "visited-button";
-    btn.textContent = "visited";
+    btn.textContent = "visited?";
     brewDiv.appendChild(btn);
 
     // add button listener
+    brewDiv.querySelector(".visited-button").addEventListener("click", e => {
+        if (e.target.style.color === "red") {
+            e.target.style.color = "green";
+        } 
+        else {
+            e.target.style.color = "red";
+        }
+    })
 
     // add brewery to website
     document.querySelector("#brewery-container").appendChild(brewDiv);
