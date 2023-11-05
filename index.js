@@ -148,7 +148,18 @@ function createBreweryCard(brewery) {
     brewDiv.appendChild(brewState);
 
     // add phone number
-    
+    brewDiv.appendChild(br);
+    let brewPhone = document.createElement("p");
+    brewPhone.textContent = brewery.phone.substring(0,3) + "-" + brewery.phone.substring(3,6) + "-"
+        + brewery.phone.substring(6, 10);
+    brewDiv.appendChild(brewPhone);
+
+    // add link to website
+    brewDiv.appendChild(br);
+    let brewLink = document.createElement("a");
+    brewLink.href = brewery.website_url;
+    brewLink.textContent = "Website";
+    brewDiv.appendChild(brewLink);
 
     // add visited button
     let btn = document.createElement("button");
