@@ -148,17 +148,18 @@ function createBreweryCard(brewery) {
     // add visited button
     let btn = document.createElement("button");
     btn.className = "visited-button";
-    btn.textContent = "visited?";
+    btn.textContent = "I've already been here!";
     brewDiv.appendChild(btn);
 
-    // add button listener
+    // add remove breweries that the user has visited
     brewDiv.querySelector(".visited-button").addEventListener("click", e => {
-        if (e.target.style.color === "red") {
-            e.target.style.color = "green";
-        } 
-        else {
-            e.target.style.color = "red";
-        }
+        e.target.parentElement.remove();
+        // if (e.target.style.color === "red") {
+        //     e.target.style.color = "green";
+        // } 
+        // else {
+        //     e.target.style.color = "red";
+        // }
     })
 
     // add brewery to website
