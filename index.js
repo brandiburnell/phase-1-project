@@ -76,22 +76,30 @@ function displayFilteredBreweries(filteredBreweries) {
 function createBreweryCard(brewery) {
     let brewDiv = document.createElement("div");
     brewDiv.className = "card";
+    brewDiv.id = brewery.name.toLowerCase().split(" ").join("-");
 
     // add brewery name
     let brewName = document.createElement("h2");
     brewName.className = "brewery-title";
-    brewName.id = brewery.name;
+    // brewName.id = brewery.name;
     brewName.textContent = brewery.name;
     brewDiv.appendChild(brewName);
 
     // add brewery name pointer over event
     brewDiv.querySelector(".brewery-title").addEventListener("pointerover", e => {
-        console.log(e);
-        e.target.style.color = "pink";
-        // console.log(e.parentElement.querySelector("a"));
-        //let link = 
-        //e.target.appendChild
+        // toggle between showing brewery info
+        if (e.target.nextSibling.style.display === "none") {
+            e.target.nextSibling.style.display = "block";
+        }
+        else {
+            e.target.nextSibling.style.display = "none";
+        }
     });
+
+    // create div to hide in the brewery card
+    let subBrewDiv = document.createElement("div");
+    subBrewDiv.className = "container";
+    subBrewDiv.style.display = "none";
 
     // add address
         let address1 = document.createElement("p");
@@ -101,67 +109,64 @@ function createBreweryCard(brewery) {
         else {
             address1.textContent = "No address information found";
         }
-        brewDiv.appendChild(address1);
+        subBrewDiv.appendChild(address1);
     
     if (brewery.address_2) {
-        let br = document.createElement("br");
+        // let br = document.createElement("br");
         brewDiv.appendChild(br);
         let address2 = document.createElement("p");
         address2.textContent = brewery.address_2;
-        brewDiv.appendChild(address2);
+        subBrewDiv.appendChild(address2);
     } 
     if (brewery.address_3) {
         let address3 = document.createElement("p");
         address3.textContent = brewery.address_3;
-        brewDiv.appendChild(address3);
+        subBrewDivbrewDiv.appendChild(address3);
     }
 
 
     // add city
     let br = document.createElement("br");
-    brewDiv.appendChild(br);
+    subBrewDiv.appendChild(br);
 
     let brewCity = document.createElement("p");
     brewCity.textContent = brewery.city;
-    brewDiv.appendChild(brewCity);
+    subBrewDiv.appendChild(brewCity);
 
     // add state
-    brewDiv.appendChild(br);
+    // brewDiv.appendChild(br);
     let brewState = document.createElement("p");
     brewState.textContent = brewery.state_province;
-    brewDiv.appendChild(brewState);
+    subBrewDiv.appendChild(brewState);
 
     // add phone number
-    brewDiv.appendChild(br);
+    subBrewDiv.appendChild(br);
     let brewPhone = document.createElement("p");
     brewPhone.textContent = brewery.phone.substring(0,3) + "-" + brewery.phone.substring(3,6) + "-"
         + brewery.phone.substring(6, 10);
-    brewDiv.appendChild(brewPhone);
+    subBrewDiv.appendChild(brewPhone);
 
     // add link to website
-    brewDiv.appendChild(br);
+    subBrewDiv.appendChild(br);
     let brewLink = document.createElement("a");
     brewLink.href = brewery.website_url;
     brewLink.textContent = "Website";
-    brewDiv.appendChild(brewLink);
+    subBrewDiv.appendChild(brewLink);
 
     // add visited button
+    subBrewDiv.appendChild(br);
     let btn = document.createElement("button");
     btn.className = "visited-button";
     btn.textContent = "I've already been here!";
-    brewDiv.appendChild(btn);
+    subBrewDiv.appendChild(btn);
 
     // add remove breweries that the user has visited
-    brewDiv.querySelector(".visited-button").addEventListener("click", e => {
-        e.target.parentElement.remove();
-        // if (e.target.style.color === "red") {
-        //     e.target.style.color = "green";
-        // } 
-        // else {
-        //     e.target.style.color = "red";
-        // }
+    subBrewDiv.querySelector(".visited-button").addEventListener("click", e => {
+        brewDiv.remove();
     })
 
+    // add subdiv to container
+    brewDiv.appendChild(subBrewDiv);
     // add brewery to website
     document.querySelector("#brewery-container").appendChild(brewDiv);
 }
