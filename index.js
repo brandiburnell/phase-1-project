@@ -74,8 +74,6 @@ function filterBreweries(e, breweries) {
         breweries = handleUserFilter("brewery_type", type, breweries);
         console.log(breweries);
     }
-    // const filteredBreweries = breweries.filter(brew => brew.postal_code.substring(0,5) === zipcode);
-    // console.log(breweries);
 
     // add breweries to the DOM that meet search criteria
     displayFilteredBreweries(breweries);
@@ -95,8 +93,71 @@ function handleUserFilter(searchTerm, userInput, breweries) {
 function displayFilteredBreweries(filteredBreweries) {
     // loop through breweries and add them to the DOM
     filteredBreweries.forEach(brew => {
-        let li = document.createElement("li");
-        li.textContent = brew.name;
-        document.querySelector("#filtered-brewery-names").appendChild(li);
+        // let li = document.createElement("li");
+        // li.textContent = brew.name;
+        // document.querySelector("#filtered-brewery-names").appendChild(li);
+        createBreweryCard(brew);
     })
+}
+
+function createBreweryCard(brewery) {
+    let brewDiv = document.createElement("div");
+    brewDiv.className = "card";
+
+    // add brewery name
+    let brewName = document.createElement("h2");
+    brewName.textContent = brewery.name;
+    brewDiv.appendChild(brewName);
+
+    // add address
+        let address1 = document.createElement("p");
+        if (brewery.address_1) {
+            address1.textContent = brewery.address_1;
+        }
+        else {
+            address1.textContent = "No address information found";
+        }
+        brewDiv.appendChild(address1);
+    
+    if (brewery.address_2) {
+        let br = document.createElement("br");
+        brewDiv.appendChild(br);
+        let address2 = document.createElement("p");
+        address2.textContent = brewery.address_2;
+        brewDiv.appendChild(address2);
+    } 
+    if (brewery.address_3) {
+        let address3 = document.createElement("p");
+        address3.textContent = brewery.address_3;
+        brewDiv.appendChild(address3);
+    }
+
+
+    // add city
+    let br = document.createElement("br");
+    brewDiv.appendChild(br);
+
+    let brewCity = document.createElement("p");
+    brewCity.textContent = brewery.city;
+    brewDiv.appendChild(brewCity);
+
+    // add state
+    brewDiv.appendChild(br);
+    let brewState = document.createElement("p");
+    brewState.textContent = brewery.state_province;
+    brewDiv.appendChild(brewState);
+
+    // add phone number
+    
+
+    // add visited button
+    let btn = document.createElement("button");
+    btn.className = "visited-button";
+    btn.textContent = "visited";
+    brewDiv.appendChild(btn);
+
+    // add button listener
+
+    // add brewery to website
+    document.querySelector("#brewery-container").appendChild(brewDiv);
 }
