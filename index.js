@@ -76,7 +76,7 @@ function displayFilteredBreweries(filteredBreweries) {
 function createBreweryCard(brewery) {
     let brewDiv = document.createElement("div");
     brewDiv.className = "card";
-    brewDiv.id = brewery.name.toLowerCase().split(" ").join("-");
+    // brewDiv.id = brewery.name.toLowerCase().split(" ").join("-");
 
     // add brewery name
     let brewName = document.createElement("h2");

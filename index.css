@@ -4,20 +4,66 @@
     padding: 1rem;
     display: inline-grid;
     margin: 1rem 2rem;
-    box-shadow: 3px 4px #e04b52;
+    box-shadow: 3px 4px darkblue;
     overflow: auto;
+    background-color: rgba(228, 238, 255, 0.6)
+}
+
+br {
+    padding: 20px;
+}
+.container {
+    border:  2mm ridge rgba(211, 220, 50, .6);
+    border-color: gray;
+    background-color: white;
+    padding-bottom: 20px;
 }
 
 button {
     position: relative;
-    background-color: white;
+    background-color: darkblue;
     border: none;
     border-radius: 5px;
     height: 3rem;
     width: max-content;
-    color: red;
+    color: white;
     font-size: 18px;
     justify-self: center;
+}
+
+body {
+    font-family: 'Segoe UI';
+    background-image: url("https://www.molsoncoorsblog.com/sites/mcblog/files/featured_images/CL-Mountain_SKy-12in.jpg");
+    background-color: white;
+}
+
+#header {
+    text-align: center;
+    text-shadow: 1px 2px 0px white;
+
+}
+
+h1 {
+    text-emphasis-color: white;
+    text-emphasis-style: "*";
+}
+
+h2 {
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+}
+
+h3 {
+    font-style: italic;
+}
+
+#brewery-search-form {
+    text-align: center;
 }
 
 
