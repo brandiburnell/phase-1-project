@@ -5,12 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#brewery-search-form").addEventListener("submit", e => {
         e.preventDefault();
         //console.log(e.target[0].value);
-        console.log(document.querySelector("#brewery-container").childNodes);
         getBreweries(e);
     });
 });
 
 function getBreweries(e) {
+    // delete current content if it exists
+    let existingBreweries = document.querySelector("#brewery-container");
+    while (existingBreweries.firstChild) {
+        existingBreweries.removeChild(existingBreweries.lastChild);
+    }
+
     let pageNum = 1;
     const coBreweryInfo = [];
     // loop through brewery data until list length is less than 50
@@ -144,15 +149,17 @@ function createBreweryCard(brewery) {
     subBrewDiv.appendChild(br);
     let brewPhone = document.createElement("p");
     brewPhone.className = "phone-number";
+    if (brewery.phone) {
     brewPhone.textContent = brewery.phone.substring(0,3) + "-" + brewery.phone.substring(3,6) + "-"
         + brewery.phone.substring(6, 10);
-    subBrewDiv.appendChild(brewPhone);
+        subBrewDiv.appendChild(brewPhone);
+    }
 
     // add link to website
     subBrewDiv.appendChild(br);
     let brewLink = document.createElement("a");
     brewLink.href = brewery.website_url;
-    brewLink.textContent = "Website";
+    brewLink.textContent = "WEBSITE";
     subBrewDiv.appendChild(brewLink);
 
     // add visited button
