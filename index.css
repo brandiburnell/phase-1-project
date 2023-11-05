@@ -13,17 +13,22 @@ p {
     line-height: 10px;
 }
 
+.phone-number {
+    margin-top: 30px;
+}
+
 .container {
     border:  dashed gray;
     border-color: gray;
     background-color: white;
     padding-bottom: 20px;
+    text-wrap: balance;
+    padding: 20px;
 }
 
 .brewery-title {
     border: 1mm ridge white;
     background-color: white;
-    ;
 }
 button {
     margin-top: 20px;
