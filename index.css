@@ -6,20 +6,27 @@
     margin: 1rem 2rem;
     box-shadow: 3px 4px darkblue;
     overflow: auto;
-    background-color: rgba(228, 238, 255, 0.6)
+    background-color: rgba(228, 238, 255, 0.6); 
 }
 
-br {
-    padding: 20px;
+p {
+    line-height: 10px;
 }
+
 .container {
-    border:  2mm ridge rgba(211, 220, 50, .6);
+    border:  dashed gray;
     border-color: gray;
     background-color: white;
     padding-bottom: 20px;
 }
 
+.brewery-title {
+    border: 1mm ridge white;
+    background-color: white;
+    ;
+}
 button {
+    margin-top: 20px;
     position: relative;
     background-color: darkblue;
     border: none;

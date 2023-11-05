@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#brewery-search-form").addEventListener("submit", e => {
         e.preventDefault();
         //console.log(e.target[0].value);
+        console.log(document.querySelector("#brewery-container").childNodes);
         getBreweries(e);
     });
 });
@@ -142,6 +143,7 @@ function createBreweryCard(brewery) {
     // add phone number
     subBrewDiv.appendChild(br);
     let brewPhone = document.createElement("p");
+    brewPhone.className = "phone-number";
     brewPhone.textContent = brewery.phone.substring(0,3) + "-" + brewery.phone.substring(3,6) + "-"
         + brewery.phone.substring(6, 10);
     subBrewDiv.appendChild(brewPhone);
