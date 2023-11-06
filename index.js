@@ -35,10 +35,11 @@ function getBreweries(e) {
 }
 
 function filterBreweries(e, breweries) {
-    let city = e.target[0].value;
+    let city = e.target[0].value.toLowerCase();
     let zipcode = e.target[1].value;
     let type = e.target[2].value;
     
+    console.log(city);
     // filter depending on what was entered
     if (city) {
         breweries = handleUserFilter("city", city, breweries);
@@ -59,6 +60,10 @@ function handleUserFilter(searchTerm, userInput, breweries) {
     // maybe change this to switch statements?
     if (searchTerm === "postal_code") {
         return breweries.filter(brew => brew[searchTerm].substring(0,5) === userInput);
+    }
+    else if (searchTerm === "city") {
+        console.log(breweries.forEach(brew => console.log(brew[searchTerm].toLowerCase())));
+        return breweries.filter(brew => brew[searchTerm].toLowerCase() === userInput);
     }
     else {
         return breweries.filter(brew => brew[searchTerm] === userInput);
