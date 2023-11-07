@@ -114,6 +114,12 @@ function createBreweryCard(brewery) {
     subBrewDiv.className = "container";
     subBrewDiv.style.display = "none";
 
+    // add type 
+    let brewType = document.createElement("p");
+    brewType.textContent = brewery.brewery_type.charAt(0).toUpperCase() +
+        brewery.brewery_type.slice(1);
+    subBrewDiv.appendChild(brewType);
+
     // add address
         let address1 = document.createElement("p");
         if (brewery.address_1) {
@@ -136,7 +142,6 @@ function createBreweryCard(brewery) {
         address3.textContent = brewery.address_3;
         subBrewDivbrewDiv.appendChild(address3);
     }
-
 
     // add city
     let br = document.createElement("br");

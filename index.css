@@ -99,13 +99,15 @@ h1 {
 }
 
 h2 {
-    background-color: white;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    /* background-color: white; */
     border-radius: 10px;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-
 }
 
 h3 {
