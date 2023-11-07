@@ -54,6 +54,11 @@ select {
     margin-bottom: 30px;
 }
 
+.brewery-type {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .container {
     border:  dashed gray;
     border-color: gray;
