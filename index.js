@@ -116,10 +116,12 @@ function createBreweryCard(brewery) {
 
     // add type 
     let brewType = document.createElement("p");
-    brewType.className = "brewery-type";
+    brewType.className = "brewery-type"
     brewType.textContent = brewery.brewery_type.charAt(0).toUpperCase() +
         brewery.brewery_type.slice(1);
     subBrewDiv.appendChild(brewType);
+    let br = document.createElement("br");
+    subBrewDiv.appendChild(br);
 
     // add address
         let address1 = document.createElement("p");
@@ -132,6 +134,8 @@ function createBreweryCard(brewery) {
         subBrewDiv.appendChild(address1);
     
     if (brewery.address_2) {
+        // let br = document.createElement("br");
+        brewDiv.appendChild(br);
         let address2 = document.createElement("p");
         address2.textContent = brewery.address_2;
         subBrewDiv.appendChild(address2);
@@ -143,16 +147,20 @@ function createBreweryCard(brewery) {
     }
 
     // add city
+    subBrewDiv.appendChild(br);
+
     let brewCity = document.createElement("p");
     brewCity.textContent = brewery.city;
     subBrewDiv.appendChild(brewCity);
 
     // add state
+    // brewDiv.appendChild(br);
     let brewState = document.createElement("p");
     brewState.textContent = brewery.state_province;
     subBrewDiv.appendChild(brewState);
 
     // add phone number
+    subBrewDiv.appendChild(br);
     let brewPhone = document.createElement("p");
     brewPhone.className = "phone-number";
     if (brewery.phone) {
@@ -162,12 +170,14 @@ function createBreweryCard(brewery) {
     }
 
     // add link to website
+    subBrewDiv.appendChild(br);
     let brewLink = document.createElement("a");
     brewLink.href = brewery.website_url;
     brewLink.textContent = "WEBSITE";
     subBrewDiv.appendChild(brewLink);
 
     // add visited button
+    subBrewDiv.appendChild(br);
     let btn = document.createElement("button");
     btn.className = "visited-button";
     btn.textContent = "I've already been here!";
