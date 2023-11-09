@@ -7,7 +7,7 @@ Colorado Brewery Finder is a Single Page Application (SPA) that operates as the 
 Colorado Brewery Finder takes three possible user inputs (city, zipcode, and brewery type). Once the user search criteria has been gathered, the SPA will fetch Colorado Brewery Data from the Open Brewery DB API. The API data will then be filtered by the user input, and any breweries matching their criteria will be displayed.
 
 ### Video Walthrough
-<a href = ""></a>
+<a href = "https://youtu.be/c5AhzAxaiTY" title = "Colorado Brewery Finder Application Walkthrough"><img src="./VideoThumbnail.JPG" height="200px" alt = "Colorado Brewery Finder Walkthrough" /></a>
 
 ## Installation
 
