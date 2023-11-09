@@ -53,13 +53,10 @@ function filterBreweries(e, breweries) {
 
     // add breweries to the DOM that meet search criteria
     displayFilteredBreweries(breweries);
-
 }
 
 function handleUserFilter(searchTerm, userInput, breweries) {
-    //
-    // maybe change this to switch statements?
-    //
+    // filter breweries by search terms the user entered
     switch(searchTerm) {
         case ("postal_code"):
             return breweries.filter(brew => brew[searchTerm].substring(0,5) === userInput);
@@ -67,8 +64,6 @@ function handleUserFilter(searchTerm, userInput, breweries) {
             return breweries.filter(brew => brew[searchTerm].toLowerCase() === userInput);
         default:
             return breweries.filter(brew => brew[searchTerm] === userInput); 
-        
-
     }
 }
 
