@@ -9,31 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// function getBreweries(e) {
-//     // delete current content if it exists
-//     let existingBreweries = document.querySelector("#brewery-container");
-//     while (existingBreweries.firstChild) {
-//         existingBreweries.removeChild(existingBreweries.lastChild);
-//     }
-
-//     let pageNum = 1;
-//     const coBreweryInfo = [];
-//     // loop through brewery data until list length is less than 50
-//     // loop through CO brewery data to develop list of all colorado breweries
-//     while(pageNum < 10) {
-//         fetch(`https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=${pageNum}&per_page=$50`)
-//         .then(res => res.json())
-//         .then(data => {
-//             // console.log(data.length);
-//             coBreweryInfo.push(...data);
-//             if (coBreweryInfo.length > 400) {
-//                 filterBreweries(e, coBreweryInfo);
-//             }
-//         });
-//         pageNum++;
-//     }
-// }
-
 function getBreweries(e) {
     // delete current content if it exists
     let existingBreweries = document.querySelector("#brewery-container");
@@ -41,45 +16,23 @@ function getBreweries(e) {
         existingBreweries.removeChild(existingBreweries.lastChild);
     }
 
-    let perPage = 50;
+    let pageNum = 1;
     const coBreweryInfo = [];
     // loop through brewery data until list length is less than 50
     // loop through CO brewery data to develop list of all colorado breweries
-    while(perPage === 50) {
-        fetch(`https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=1&per_page=$${perPage}`)
+    while(pageNum < 10) {
+        fetch(`https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=${pageNum}&per_page=$50`)
         .then(res => res.json())
         .then(data => {
-            perPage = data.length;
+            // console.log(data.length);
             coBreweryInfo.push(...data);
             if (coBreweryInfo.length > 400) {
                 filterBreweries(e, coBreweryInfo);
             }
         });
+        pageNum++;
     }
 }
-
-// function getBreweries(e) {
-//     // delete current content if it exists
-//     let existingBreweries = document.querySelector("#brewery-container");
-//     while (existingBreweries.firstChild) {
-//         existingBreweries.removeChild(existingBreweries.lastChild);
-//     }
-
-//     let pageNum = 1;
-//     const coBreweryInfo = [];
-//     // loop through brewery data until list length is less than 50
-//     // loop through CO brewery data to develop list of all colorado breweries
-//     fetchData("https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=1&per_page=$50");
-// }
-
-// function fetchData(apiUrl) {
-//     fetch(apiUrl)
-//         .then(res => res.json())
-//         .then(data => {
-//             console.log(data);
-//             console.log(data["next_page"]);
-//         });
-// }
 
 function filterBreweries(e, breweries) {
     let city = e.target[0].value.toLowerCase();
@@ -107,15 +60,15 @@ function handleUserFilter(searchTerm, userInput, breweries) {
     //
     // maybe change this to switch statements?
     //
-    if (searchTerm === "postal_code") {
-        return breweries.filter(brew => brew[searchTerm].substring(0,5) === userInput);
-    }
-    else if (searchTerm === "city") {
-        // console.log(breweries.forEach(brew => console.log(brew[searchTerm].toLowerCase())));
-        return breweries.filter(brew => brew[searchTerm].toLowerCase() === userInput);
-    }
-    else {
-        return breweries.filter(brew => brew[searchTerm] === userInput);
+    switch(searchTerm) {
+        case ("postal_code"):
+            return breweries.filter(brew => brew[searchTerm].substring(0,5) === userInput);
+        case ("city"):
+            return breweries.filter(brew => brew[searchTerm].toLowerCase() === userInput);
+        default:
+            return breweries.filter(brew => brew[searchTerm] === userInput); 
+        
+
     }
 }
 
