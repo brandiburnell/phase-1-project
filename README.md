@@ -29,7 +29,8 @@ The "I've already been here!" button will remove a brewery from the list to narr
 Once the details are displayed, a user can visit the website of their chosen brewery by clicking the link with the text "WEBSITE."
 
 ## Credits
-API credits: <a href = "">
+API credits: <a href = "https://www.openbrewerydb.org/documentation#list-breweries">Open Brewery DB</a>  
+Backgorund image: <a href = "https://www.molsoncoorsblog.com/sites/mcblog/files/featured_images/CL-Mountain_SKy-12in.jpg">Miller Coors Mountains</a>  
 
 
 
