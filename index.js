@@ -1,4 +1,4 @@
-// 
+// wait until all conent is loaded
 document.addEventListener("DOMContentLoaded", () => {
 
     // Take user input and display breweries that meet search criteria
@@ -8,6 +8,31 @@ document.addEventListener("DOMContentLoaded", () => {
         getBreweries(e);
     });
 });
+
+// function getBreweries(e) {
+//     // delete current content if it exists
+//     let existingBreweries = document.querySelector("#brewery-container");
+//     while (existingBreweries.firstChild) {
+//         existingBreweries.removeChild(existingBreweries.lastChild);
+//     }
+
+//     let pageNum = 1;
+//     const coBreweryInfo = [];
+//     // loop through brewery data until list length is less than 50
+//     // loop through CO brewery data to develop list of all colorado breweries
+//     while(pageNum < 10) {
+//         fetch(`https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=${pageNum}&per_page=$50`)
+//         .then(res => res.json())
+//         .then(data => {
+//             // console.log(data.length);
+//             coBreweryInfo.push(...data);
+//             if (coBreweryInfo.length > 400) {
+//                 filterBreweries(e, coBreweryInfo);
+//             }
+//         });
+//         pageNum++;
+//     }
+// }
 
 function getBreweries(e) {
     // delete current content if it exists
@@ -20,18 +45,16 @@ function getBreweries(e) {
     const coBreweryInfo = [];
     // loop through brewery data until list length is less than 50
     // loop through CO brewery data to develop list of all colorado breweries
-    while(pageNum < 10) {
-        fetch(`https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=${pageNum}&per_page=$50`)
+    fetchData("https://api.openbrewerydb.org/v1/breweries?by_state=colorado&page=1&per_page=$50");
+}
+
+function fetchData(apiUrl) {
+    fetch(apiUrl)
         .then(res => res.json())
         .then(data => {
-            // console.log(data.length);
-            coBreweryInfo.push(...data);
-            if (coBreweryInfo.length > 400) {
-                filterBreweries(e, coBreweryInfo);
-            }
+            console.log(data);
+            console.log(data["next_page"]);
         });
-        pageNum++;
-    }
 }
 
 function filterBreweries(e, breweries) {
